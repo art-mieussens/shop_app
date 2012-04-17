@@ -1,0 +1,15 @@
+<h1>Detalles de producto</h1>
+<table>
+	<tr><td>Descripción:</td><td><%= @product.description %></td></tr>
+	<tr>
+		<% unless params[:product_category_id]%>
+			<td>Categoría:</td>
+			<td><%= @product.product_category.name %></td>
+		<% end %>
+	</tr>
+	<tr><td>Proveedor:</td><td><%= @product.supplier.name %></td></tr>
+	<tr><td>Código:</td><td><%= @product.code %></td></tr>
+	<tr><td>C. Barras:</td><td><%= @product.bar_code %></td></tr>
+	<tr><td>IVA:</td><td><%= @product.vat ? @product.vat : "18" %>%</td></tr>	
+	<tr><td>Para la venta?:</td><td><%= @product.for_sale %></dt></tr>
+</table>

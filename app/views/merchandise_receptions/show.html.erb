@@ -1,0 +1,75 @@
+<h2>
+	Detalles de nota de recepción <%= link_to image_tag('icons/large/edit.png', :alt => 'Editar'), edit_merchandise_reception_path(@merchandise_reception) unless @merchandise_reception.closed %>
+</h2>
+<fieldset>
+	<%= label_tag :proveedor %>				<%= @merchandise_reception.supplier.name %> <br />
+	<%= label_tag "Ref. albarán" %>			<%= @merchandise_reception.reception_note_code %> <br />
+	<%= label_tag "Ref. factura" %>			<%= @merchandise_reception.invoice_code %> <br />
+	<%= label_tag :fecha_de_recepción %>	<%= @merchandise_reception.received_at.strftime "%d/%m/%y" %> <br />
+	<%= label_tag :recibido_por %> 			<%= @merchandise_reception.receptor.full_name %> <br />
+	<%= label_tag :notas %>					<%= @merchandise_reception.notes %> <br />
+	<br />
+	<%= label_tag "Líneas de albarán" %>	<%= @merchandise_reception.merchandise_reception_lines.count %><br />
+	<%= label_tag "Productos" %>			<%= @merchandise_reception.merchandise_reception_lines.collect{|mrl| mrl.quantity.to_i}.reduce(:+) || 0 %><br />
+	<br />
+	<%= label_tag "Descuento" %>			<%= to_euros @merchandise_reception.discount %><br />
+	<br />
+	<table>
+		<tr>
+			<th></th> <th>18%</th> <th>8%</th> <th>4%</th> <th>Total</th>
+		</tr>
+		<tr>
+			<th><%= label_tag "Monto" %></th>
+			<td><%= to_euros @merchandise_reception.sum18 %> </td>
+			<td><%= to_euros @merchandise_reception.sum8 %> </td>
+			<td><%= to_euros @merchandise_reception.sum4 %> </td>
+			<th><%= to_euros(@merchandise_reception.sum18 +  @merchandise_reception.sum8 +  @merchandise_reception.sum4) %> </th>
+		</tr>
+		<tr>
+			<th><%= label_tag "Descuento" %></th>
+			<td><%= to_euros @merchandise_reception.disc18 %> </td>
+			<td><%= to_euros @merchandise_reception.disc8 %> </td>
+			<td><%= to_euros @merchandise_reception.disc4 %> </td>
+			<th><%= to_euros(@merchandise_reception.disc18 +  @merchandise_reception.disc8 +  @merchandise_reception.disc4) %> </th>
+		<tr>
+			<th><%= label_tag "Base Imponible" %></th>
+			<td><%= to_euros @merchandise_reception.bi18sum %> </td>
+			<td><%= to_euros @merchandise_reception.bi8sum %> </td>
+			<td><%= to_euros @merchandise_reception.bi4sum %> </td>
+			<th><%= to_euros(@merchandise_reception.bi18sum +  @merchandise_reception.bi8sum +  @merchandise_reception.bi4sum) %> </th>
+		</tr>
+		<tr>
+			<th><%= label_tag "IVA" %></th>
+			<td><%= to_euros @merchandise_reception.vat18sum %> </td>
+			<td><%= to_euros @merchandise_reception.vat8sum %> </td>
+			<td><%= to_euros @merchandise_reception.vat4sum %> </td>
+			<th><%= to_euros(@merchandise_reception.vat18sum +  @merchandise_reception.vat8sum +  @merchandise_reception.vat4sum) %> </th>
+		</tr>
+		<tr>
+			<th><%= label_tag "Rec. equiv." %></th>
+			<td><%= to_euros @merchandise_reception.req18sum %> </td>
+			<td><%= to_euros @merchandise_reception.req8sum %> </td>
+			<td><%= to_euros @merchandise_reception.req4sum %> </td>
+			<th><%= to_euros(@merchandise_reception.req18sum + @merchandise_reception.req8sum +  @merchandise_reception.req4sum) %> </th>
+		</tr>
+		<tr>
+			<th><%= label_tag "Total" %></th>
+			<th><%= to_euros (@merchandise_reception.bi18sum + @merchandise_reception.vat18sum + @merchandise_reception.req18sum)  %> </th>
+			<th><%= to_euros (@merchandise_reception.bi8sum + @merchandise_reception.vat8sum + @merchandise_reception.req8sum) %> </th>
+			<th><%= to_euros (@merchandise_reception.bi4sum + @merchandise_reception.vat4sum + @merchandise_reception.req4sum)  %> </th>
+			<th><%= to_euros (@merchandise_reception.bi18sum + @merchandise_reception.vat18sum + @merchandise_reception.req18sum +
+			 				 @merchandise_reception.bi8sum + @merchandise_reception.vat8sum + @merchandise_reception.req8sum +
+			 				 @merchandise_reception.bi4sum + @merchandise_reception.vat4sum + @merchandise_reception.req4sum) %> </th>
+		</tr>
+	</table>
+	<br />
+	<%= label_tag "Descuento" %> <%= to_euros @merchandise_reception.discount || 0 %> <br />
+	<%= label_tag "Costo transporte" %> <%= to_euros @merchandise_reception.transport_cost || 0 %> <br />
+	<%= label_tag "Otros costos" %> <%= to_euros @merchandise_reception.other_cost || 0 %> <br />
+</fieldset>
+<% if @merchandise_reception.closed %>
+	Cerrada
+<% else %>
+<%= link_to image_tag('icons/large/login.png'), merchandise_reception_process_and_close_path(@merchandise_reception), :method => :post, :confirm => "¿Seguro que desea procesar y cerrar esta nota de recepción?" %>
+<%= link_to 'Procesar y cerrar', merchandise_reception_process_and_close_path(@merchandise_reception), :method => :post, :confirm => "¿Seguro que desea procesar y cerrar esta nota de recepción?" %>
+<% end %>

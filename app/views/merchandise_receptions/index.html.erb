@@ -1,0 +1,7 @@
+<h1>Notas de recepción  <%= link_to image_tag('icons/add.png'), new_merchandise_reception_path %> </h1>
+
+<%= paginate @merchandise_receptions %>
+<table>
+	<th>Fecha</th><th>Proveedor</th><th>C.Albarán</th><th>C.Factura</th><th></th>
+	<%= render @merchandise_receptions %>
+</table>

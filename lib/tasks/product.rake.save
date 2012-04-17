@@ -1,0 +1,12 @@
+namespace :product do
+
+  desc "Set all the prices to their current value"
+  task :fix_all_prices => :environment do
+    Product.all.each do |product|
+      if product.for_sale
+        product.update_attribute( product.sell_price unless product.price.present
+      end
+    end
+  end
+  
+end

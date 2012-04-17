@@ -1,0 +1,29 @@
+<%= form_for @merchandise_reception do |f| %>
+	
+	<% if @merchandise_reception.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@merchandise_reception.errors.count, "error") %> prohibited this merchandise reception from being saved:</h2>
+	      <ul>
+		      <% @merchandise_reception.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+		<%= f.label :proveedor %>			<%= f.collection_select( :supplier_id, @suppliers, :id, :name, :prompt => "Seleccione proveedor" ) %> <br />
+		<%= f.label "Ref. albarán" %>			<%= f.text_field :reception_note_code %> <br />
+		<%= f.label "Ref. factura" %>			<%= f.text_field :invoice_code %> <br />
+		<%= f.label :fecha_de_recepción %>	<%= f.date_select( :received_at, :order => [:day, :month, :year], :start_year => 2011, :end_year => Time.now.year, :default => Time.now ) %> <br />
+		<%= f.label :recibido_por %> 		<%= f.collection_select( :received_by, @employees, :id, :full_name, :prompt => "Seleccione" ) %> <br />
+		<%= f.label :notas %>				<%= f.text_area :notes %> <br />
+	</fieldset>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end %>
+
+<%= focus_on_load "products_product_description" %>
+<%= disable_enter %>

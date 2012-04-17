@@ -1,0 +1,20 @@
+<tr>
+	<td><%= link_to product.code, product_path(product) if product.code %></td>
+	<td><%= link_to product.description, product_path(product) %></td>
+	<td><%= product.product_category.name if product.product_category %></td>
+	<td><%= product.supplier.name if product.supplier %></td>
+	<td><%= product.vat ? product.vat : "18" %></td>
+	<td><%= product.quantity %></td>
+	<td><%= to_euros(product.sell_price) %></td>
+	<td>
+		<%= link_to image_tag("icons/edit.png", :alt => "Editar"), edit_product_path(product) %>
+		<% unless product.product_transformation %>
+			<%= link_to image_tag("icons/transform.png", :alt => "Añadir transformación"), product_product_transformation_path(product), :method => :post, :confirm => "¿Desea crear una nueva transformación para este producto?" %>
+		<% else %>
+			<%= link_to image_tag("icons/transform.png", :alt => "Mostrar transformación"), product_product_transformation_path(product) %>
+		<% end %>
+
+		<%= link_to image_tag("icons/remove.png", :alt => "Borrar"), product_path(product), :method => :delete, :confirm => "Seguro que quiere borrar este producto?" %>
+		<%= link_to image_tag("icons/movements.png", :alt => "Movimientos"), product_inventory_movements_path(product) %>
+	</td>
+</tr>

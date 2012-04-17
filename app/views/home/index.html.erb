@@ -1,0 +1,6 @@
+<% unless logged_in? %>
+	<h2><%= icon('home') %> Welcome</h2>
+	Por favor <%= link_to 'Entra', new_connection_url %>
+<% else %>
+
+<% end %>

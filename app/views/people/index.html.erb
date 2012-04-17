@@ -1,0 +1,13 @@
+<h1>Lista de 
+	<%= case @select
+			when "customer" then "Clientes"
+			when "employee" then "Empleados"
+			else "Personas"
+		end %>
+	<%= link_to image_tag("icons/add.png", :alt => "añadir"), new_person_path unless @select %>
+</h1>
+
+<table>
+	<th>Nombre</th><th>email</th><th>Móvil</th>
+	<%= render @people %>
+</table>

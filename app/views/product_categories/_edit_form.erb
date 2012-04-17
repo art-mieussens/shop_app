@@ -1,0 +1,19 @@
+<%= form_for @product_category do |f| %>
+	
+	<% if @product_category.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@product_category.errors.count, "errores") %> Impidieron que esta categoría de productos fuera creada:</h2>
+	      <ul>
+		      <% @product_category.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+		<%= f.label :nombre %>
+		<%= f.text_field :name %>
+		<%= f.submit %>
+<% end %>
+
+<%= focus_on_load "products_product_category_name" %>

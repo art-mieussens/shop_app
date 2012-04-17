@@ -1,0 +1,11 @@
+<li>
+	<%= product_category.name %>
+	<%= link_to image_tag("icons/add.png", :alt => "añadir"), new_product_category_product_category_path(product_category) if current_user_has_role? "crear_productos_categorias_de_producto" %>
+	<%= link_to image_tag("icons/edit.png", :alt => "editar"), edit_product_category_path(product_category) if current_user_has_role? "editar_productos_categorias_de_producto" %>
+	<%= link_to image_tag("icons/remove.png", :alt => "borrar"), product_category, :method => :delete, :confirm => "Seguro que quieres borrar esta categoría?" if product_category.name != "Todo" and current_user_has_role? "borrar_categorias_de_producto" %>
+	<% unless product_category.children_count == 0 %>
+		<ul>
+			<%= render :partial => "product_category", :collection => product_category.direct_children, :as => :product_category %>
+		</ul>
+	<% end %>
+</li>

@@ -1,0 +1,9 @@
+<tr>
+	<td><%= inventory_movement.created_at.strftime("%d/%m/%Y") %></td>
+	<td><%= inventory_movement.created_at.strftime("%H:%M:%S") %></td>
+	<% unless @product %>
+		<td><%= inventory_movement.product.code %></td>
+	<% end %>
+	<td><%=inventory_movement.quantity %></td> 
+	<td><%=inventory_movement.unit_cost %></td>
+</tr>

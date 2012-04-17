@@ -1,0 +1,14 @@
+<h1>Nueva venta <%= link_to image_tag("icons/add.png"), sales_path, :method => :post %></h1>
+<br />
+<h3>Ventas abiertas</h3>
+	<table>
+		<th>F.apertura</th> <th>H.apertura</th> <th>Monto</th>		
+		<%= render :partial => "open_sale", :collection => @open_sales, :as => :sale  %>
+	</table>
+<br />
+<h3>Últimas ventas</h3>
+	<%= paginate @sales %>
+	<table>
+		<th>Ticket #</th> <th>F.cierre</th> <th>H.cierre</th> <th>Monto</th>		
+		<%= render :partial => "sale", :collection => @sales, :as => :sale  %>
+	</table>

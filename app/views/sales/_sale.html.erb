@@ -1,0 +1,7 @@
+<tr>
+	<td><%= sale.id %></td>
+	<td><%= link_to sale.ticket_number, sale_path(sale) %>
+	<td><%= link_to sale.closed_at.strftime("%d/%m/%Y"), sale_path(sale) %></td>
+	<td><%= link_to sale.closed_at.strftime("%H:%M:%S"), sale_path(sale) %></td>
+	<td><%= to_euros(sale.total) %></td>
+</tr>	

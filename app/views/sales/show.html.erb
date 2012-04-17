@@ -1,0 +1,53 @@
+<h1>Venta</h1>
+
+Fecha: <%= @sale.created_at.strftime("%d/%m/%Y") %> <br />
+Hora: <%= @sale.created_at.strftime("%H:%M:%S") %> <br />
+<% if @sale.closed %>
+	Cerrada?: <%= "✓" %> <%= link_to "abrir", sale_open_path(@sale), :method => :put, :confirm => "¿Seguro que desea abrir esta venta? , se borrarán todos los movimientos de inventario." %> <br />
+<% else %>
+	<%= form_for @sale, :method => :put do |f| %>
+		Tarifa: <%= f.collection_select( :rate_id, Rate.order(:id), :id, :description ) %> <%= f.submit "Cambiar" %>
+	<% end %>
+<% end %>
+<br />
+<ul>
+	<table>
+		<th>Código</th>
+		<th>Descripción</th>
+		<th>Tarifa</th>
+		<th>Precio unit.</th>
+		<th>Cantidad</th>
+		<th>Importe</th>
+		<%= render @sale.sale_lines %>
+	</table>
+	<br />
+	Total: <%= to_euros(@sale.total) %> <br />
+	<br />
+	
+	<% unless @sale.closed %>
+	
+		<fieldset>
+			<legend>Añadir producto</legend>
+			<%= form_for [@sale, @sale_line] do |f| %>
+				<%= f.label "Cantidad:" %> <%= f.text_field :quantity, :size => 10, :value => '1' %> <br />
+				<%= f.label "tarifa:" %> <%= f.collection_select(:rate_id, Rate.order(:id), :id, :description ) %> <br />
+				<%= f.label "Producto:" %> <%= text_field_tag :product_search, '', :size => 40 %> <br />
+				<label>&nbsp; </label> <%= f.submit "Añadir"%>  <%= submit_tag "Buscar" %> <br />
+			<% end %>
+		</fieldset>
+
+		<%= link_to "Cerrar venta", sale_close_path(@sale), :method => :post %> <br />
+		
+	<% else %>
+	
+		Fecha de cierre: <%= @sale.closed_at.strftime("%d/%m/%Y") %> <br />
+		Hora de cierre: <%= @sale.closed_at.strftime("%H:%M:%S") %> <br />
+		<br />
+		
+		<%= link_to "Imprimir ticket", sale_print_ticket_path(@sale) %> <br />
+
+	<% end %>
+	
+</ul>
+
+<%= focus_on_load("product_search") %>

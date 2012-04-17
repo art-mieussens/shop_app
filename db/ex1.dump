@@ -1,0 +1,144 @@
+BEGIN TRANSACTION;
+CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+INSERT INTO "schema_migrations" VALUES('20110222195716');
+INSERT INTO "schema_migrations" VALUES('20110222195718');
+INSERT INTO "schema_migrations" VALUES('20110222195754');
+INSERT INTO "schema_migrations" VALUES('20110222195809');
+INSERT INTO "schema_migrations" VALUES('20110222195930');
+INSERT INTO "schema_migrations" VALUES('20110222200019');
+INSERT INTO "schema_migrations" VALUES('20110222200056');
+INSERT INTO "schema_migrations" VALUES('20110222200113');
+INSERT INTO "schema_migrations" VALUES('20110222200217');
+INSERT INTO "schema_migrations" VALUES('20110222200231');
+INSERT INTO "schema_migrations" VALUES('20110222200242');
+INSERT INTO "schema_migrations" VALUES('20110222200343');
+INSERT INTO "schema_migrations" VALUES('20110222200353');
+INSERT INTO "schema_migrations" VALUES('20110222200402');
+INSERT INTO "schema_migrations" VALUES('20110222200431');
+INSERT INTO "schema_migrations" VALUES('20110222200443');
+INSERT INTO "schema_migrations" VALUES('20110222200454');
+INSERT INTO "schema_migrations" VALUES('20110222200522');
+INSERT INTO "schema_migrations" VALUES('20110222200531');
+INSERT INTO "schema_migrations" VALUES('20110222200733');
+INSERT INTO "schema_migrations" VALUES('20110222200745');
+INSERT INTO "schema_migrations" VALUES('20110223092012');
+DELETE FROM sqlite_sequence;
+INSERT INTO "sqlite_sequence" VALUES('admin_users',3);
+INSERT INTO "sqlite_sequence" VALUES('products_product_categories',30);
+INSERT INTO "sqlite_sequence" VALUES('admin_roles',82);
+INSERT INTO "sqlite_sequence" VALUES('contact_book_bussinesses',20);
+INSERT INTO "sqlite_sequence" VALUES('contact_book_appointments',2);
+INSERT INTO "sqlite_sequence" VALUES('contact_book_people',19);
+CREATE TABLE "admin_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "hashed_password" varchar(255), "salt" varchar(255), "person_id" integer, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "admin_users" VALUES(1,'root','53a6bf25ef3859a99b750f31a5a35058517eb2b00cf214a8b254be93d49bbae9','21544597600.1470960882154928',NULL,'2011-02-28 08:40:25.169576','2011-02-28 08:40:25.169576');
+INSERT INTO "admin_users" VALUES(2,'sdfgj',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "admin_users" VALUES(3,'dfhj',NULL,NULL,NULL,NULL,NULL);
+CREATE TABLE "admin_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "parent_id" integer, "lft" integer, "rgt" integer, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "admin_roles" VALUES(1,'root',NULL,1,100,NULL,'2011-03-08 01:26:32.948792');
+INSERT INTO "admin_roles" VALUES(2,'admin',1,2,17,NULL,'2011-03-08 01:17:54.939637');
+INSERT INTO "admin_roles" VALUES(3,'productos',1,17,34,NULL,'2011-03-08 01:02:11.094396');
+INSERT INTO "admin_roles" VALUES(4,'precios',1,34,43,NULL,'2011-03-08 01:03:40.052466');
+INSERT INTO "admin_roles" VALUES(5,'inventarios',1,43,66,NULL,'2011-03-08 01:28:59.138120');
+INSERT INTO "admin_roles" VALUES(6,'contactos',1,66,79,NULL,'2011-03-08 01:30:52.930297');
+INSERT INTO "admin_roles" VALUES(21,'ver admin',2,3,8,'2011-03-03 18:11:15.394374','2011-03-08 00:58:30.535338');
+INSERT INTO "admin_roles" VALUES(22,'crear admin',2,8,9,'2011-03-03 18:11:27.459737','2011-03-08 00:58:50.365324');
+INSERT INTO "admin_roles" VALUES(23,'modificar admin',2,9,12,'2011-03-03 18:11:46.339557','2011-03-08 00:58:57.848977');
+INSERT INTO "admin_roles" VALUES(24,'borrar admin',2,12,17,'2011-03-03 18:11:54.228978','2011-03-08 00:59:23.828672');
+INSERT INTO "admin_roles" VALUES(42,'ver productos',3,18,27,'2011-03-07 20:55:59.165169','2011-03-08 00:59:47.062203');
+INSERT INTO "admin_roles" VALUES(43,'ver precios',4,35,36,'2011-03-07 20:56:20.471546','2011-03-08 01:00:11.085505');
+INSERT INTO "admin_roles" VALUES(60,'ver inventarios',5,58,59,'2011-03-08 01:01:01.475972','2011-03-08 01:01:01.492963');
+INSERT INTO "admin_roles" VALUES(61,'ver contactos',6,71,72,'2011-03-08 01:01:12.380325','2011-03-08 01:01:12.398248');
+INSERT INTO "admin_roles" VALUES(62,'crear productos',3,28,29,'2011-03-08 01:01:34.078275','2011-03-08 01:01:34.090434');
+INSERT INTO "admin_roles" VALUES(63,'modificar productos',3,30,31,'2011-03-08 01:01:50.496325','2011-03-08 01:02:58.367538');
+INSERT INTO "admin_roles" VALUES(64,'borrar productos',3,32,33,'2011-03-08 01:02:11.083521','2011-03-08 01:02:11.106778');
+INSERT INTO "admin_roles" VALUES(65,'crear precios',4,37,38,'2011-03-08 01:03:10.800899','2011-03-08 01:03:10.813456');
+INSERT INTO "admin_roles" VALUES(66,'modificar precios',4,39,40,'2011-03-08 01:03:27.362512','2011-03-08 01:03:27.381863');
+INSERT INTO "admin_roles" VALUES(67,'borrar precios',4,41,42,'2011-03-08 01:03:40.040744','2011-03-08 01:03:40.054052');
+INSERT INTO "admin_roles" VALUES(68,'roles',2,15,16,'2011-03-08 01:17:54.879983','2011-03-08 01:17:54.941033');
+INSERT INTO "admin_roles" VALUES(77,'crear inventarios',5,60,61,'2011-03-08 01:28:28.809229','2011-03-08 01:28:28.822086');
+INSERT INTO "admin_roles" VALUES(78,'modificar inventarios',5,62,63,'2011-03-08 01:28:43.496840','2011-03-08 01:28:43.512886');
+INSERT INTO "admin_roles" VALUES(79,'borrar inventarios',5,64,65,'2011-03-08 01:28:59.115554','2011-03-08 01:28:59.141113');
+INSERT INTO "admin_roles" VALUES(80,'crear contactos',6,73,74,'2011-03-08 01:29:24.558853','2011-03-08 01:29:24.578996');
+INSERT INTO "admin_roles" VALUES(81,'modificar contactos',6,75,76,'2011-03-08 01:30:07.733011','2011-03-08 01:30:07.746671');
+INSERT INTO "admin_roles" VALUES(82,'borrar contactos',6,77,78,'2011-03-08 01:30:52.913027','2011-03-08 01:30:52.931981');
+CREATE TABLE "admin_role_assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "role_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "contact_book_people" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "email" varchar(255), "nif" varchar(255), "address1" varchar(255), "address2" varchar(255), "postal_code" varchar(255), "city" varchar(255), "state" varchar(255), "country" varchar(255), "home_phone" varchar(255), "bussiness_phone" varchar(255), "cell_phone" varchar(255), "created_at" datetime, "updated_at" datetime, notes text);
+INSERT INTO "contact_book_people" VALUES(1,'Eliseo','López',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'91 3430135','690 662467','2011-02-19 22:18:42.709541+0000','2011-02-19 22:18:42.709541+0000','ECLU Enmacosa');
+INSERT INTO "contact_book_people" VALUES(2,'Pedro','López',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'616 448 398','2011-02-20 15:37:33.993241+0000','2011-02-20 15:37:33.993241+0000','Representante de Item');
+INSERT INTO "contact_book_people" VALUES(3,'María del Rosario (Charo)','Lama More','mrlamamore@reaf.es',NULL,'C. Francisco Silvela 104, 3 Ext. Dcha.',NULL,'28002','Madrid','Madrid','España',NULL,'91 5614096','619 967 449','2011-02-20 16:05:08.359338+0000','2011-02-20 16:24:59.849220+0000','Asesora');
+INSERT INTO "contact_book_people" VALUES(4,'Aurora','Polo Reyes','aurora.polo@barclays.es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'91 5155490',NULL,'2011-02-20 16:06:43.888415+0000','2011-02-20 16:06:43.888415+0000','Gestora Personal, Barclays Clara del rey 8');
+INSERT INTO "contact_book_people" VALUES(5,'Alberto','Domínguez','alberto.dominguez@fornor.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'678 78 74 36','2011-02-20 16:07:50.075867+0000','2011-02-20 16:07:50.075867+0000','Representante Fornor');
+INSERT INTO "contact_book_people" VALUES(6,'Salvatore','Martino',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'660 979 868','2011-02-20 16:23:12.301770+0000','2011-02-20 16:48:09.321113+0000','Representante Ixa');
+INSERT INTO "contact_book_people" VALUES(7,'Carmen','Del Río García','carmen@delrioflor.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'615 588 186','2011-02-20 16:40:05.066758+0000','2011-02-20 16:40:05.066758+0000','Del Río flores y plantas artificiales. ');
+INSERT INTO "contact_book_people" VALUES(8,'Miguel Ángel','Luque Arias','maluke@telefonica.net',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'607 613 435','2011-02-21 17:49:08.918688+0000','2011-02-21 17:49:08.918688+0000','Fax: 952 314 900 ');
+INSERT INTO "contact_book_people" VALUES(9,'José Luis','Ferres','jlferres.comercial@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'609 608 861','2011-02-21 18:27:06.401537+0000','2011-02-21 18:27:06.401537+0000','Reprsenante Madrid de Orval CreationsProductos franceses preciosos, con inspiración antigua. (ver publicidad)');
+INSERT INTO "contact_book_people" VALUES(10,'Emeterio','Martínez Dorao',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'654 174 706','2011-02-21 18:37:51.942745+0000','2011-02-21 18:37:51.942745+0000','Representante de Concoral. Fax: 91 525 09 05');
+INSERT INTO "contact_book_people" VALUES(11,'Sonia','XXX ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'687 76 16 92','2011-02-21 18:46:18.202588+0000','2011-02-21 18:46:18.202588+0000','Representante de Sukima Decor. ');
+INSERT INTO "contact_book_people" VALUES(12,'Pedro ','Gil','pg@pobra.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'(45) 43 27 80 41',NULL,'2011-02-22 17:33:57.918265+0000','2011-02-22 17:40:37.498663+0000','Jefe de Ventas España de Pobra House of Christmas. ');
+INSERT INTO "contact_book_people" VALUES(13,'Ramón de ','Lucio Quindós','ramon@fisura.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'637 561 216','2011-02-22 18:02:49.174387+0000','2011-02-22 18:02:49.174387+0000','Representante de FisuraFax: 987 172 666');
+INSERT INTO "contact_book_people" VALUES(14,'Iñaki','Ayala Sánchez ','ayala@noberplast.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'699 47 69 81','2011-02-22 18:50:43.273766+0000','2011-02-22 18:50:43.273766+0000','Noberplast');
+CREATE TABLE "contact_book_customers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "bussiness_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "contact_book_employees" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "contact_book_bussinesses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "fiscal_name" varchar(255), "cif" varchar(255), "address1" varchar(255), "address2" varchar(255), "postal_code" varchar(255), "city" varchar(255), "state" varchar(255), "country" varchar(255), "phone" varchar(255), "fax" varchar(255), "email" varchar(255), "website" varchar(255), "created_at" datetime, "updated_at" datetime);
+INSERT INTO "contact_book_bussinesses" VALUES(1,'Item***',NULL,NULL,'Pol. Ind. Can Estapé, C/ Ferrocarril, n 7. Nave 5.  ',NULL,NULL,'08755','Castellbisbal- Barcelona','España','93 776 83 00',NULL,NULL,'2011-02-20 15:50:51.791452+0000','2011-02-23 09:41:20.275801+0000','Dpto. Cial. Fax: 93 774 60 08
+Dpto. Adm. Fax: 93 774 60 13
+Dpto. Imp. Fax: 93 774 60 07
+Represenatnte: Pedro.');
+INSERT INTO "contact_book_bussinesses" VALUES(2,'Fornor***',NULL,NULL,'Avenida de Acero S/N. Pol. Ind. Miralcampo. ',NULL,'19200 ','Azuqueca de Henares','Guadalajara','España','902 400 636',NULL,'www.fornor.com','2011-02-20 16:04:08.928528+0000','2011-02-20 16:16:48.179902+0000','Visitar exposición en Alcalá de Henares. 
+Representante Alberto Domínguez. 
+Fax: 949 260 749');
+INSERT INTO "contact_book_bussinesses" VALUES(3,'Barclays, Agencia urbana Nº 91',NULL,NULL,'C. Clara del Rey 8',NULL,'28002','Madrid','Madrid','España','91 5155490','oficina1253.es@barclays.es',NULL,'2011-02-20 16:08:27.286643+0000','2011-02-20 16:09:06.407489+0000','Fax: 91 5155491');
+INSERT INTO "contact_book_bussinesses" VALUES(4,'Alanda, Asesoría de Empresas','Alanda Servicios Integrales S.L.',NULL,'C. Francisco Silvela, 104 - 3 Ext. Dcha.',NULL,'28002','Madrid','Madrid','España','91 561 4096',NULL,NULL,'2011-02-20 16:13:12.497393+0000','2011-02-20 16:13:12.497393+0000','Fax: 91 561 4096');
+INSERT INTO "contact_book_bussinesses" VALUES(5,'Ixia***','Ixia Regal, S.A.',NULL,'Avenida de Juguete, 20. ',NULL,'0344',NULL,'IBI-Alicante','España','96 555 06 15',NULL,'www.ixia.es','2011-02-20 16:15:48.299904+0000','2011-02-20 16:15:48.299904+0000','Representante Salvatore
+Fax: 96 555 32 07');
+INSERT INTO "contact_book_bussinesses" VALUES(6,'Ibersoni***',NULL,NULL,'Pol. Ind. N 2. C/ del Progreso s/n. ',NULL,'46530','Puzol','Valencia','España','96 142 17 57','info@ibersoni.com','www.ibersoni.com','2011-02-20 16:33:14.020176+0000','2011-02-20 16:33:49.250456+0000','Decoración, iluminación y regalos. ');
+INSERT INTO "contact_book_bussinesses" VALUES(7,'Del Río***',NULL,NULL,'C/ Velada s/n',NULL,'45868','Calera y Chozas','Toledo','España','925 846 525',NULL,'www.delrioflor.com','2011-02-20 16:37:24.280690+0000','2011-02-20 16:40:58.832428+0000','Flores y plantas artificiales.
+Carmen del Río García. ');
+INSERT INTO "contact_book_bussinesses" VALUES(8,'Unimasa Casaselección***','Universal Importadora Alicantina',NULL,'Avenida del Juguete 20',NULL,'03440',NULL,'IBI-Alicante ','España','96 555 03 89',NULL,'www.unimasa.es','2011-02-20 16:47:45.586503+0000','2011-02-20 16:47:45.586503+0000','Artículos baño y hogar. 
+Mistan gente de Ixia. (Salavatore)');
+INSERT INTO "contact_book_bussinesses" VALUES(9,'Natural Selection*',NULL,'A-59444216','Ctra. Sant Martí Sarroca km 8 s/n. ',NULL,'08731','Barrí Serra de Dalt','Sant Martí Sarroca','España','938 99 01 02','www.natsel.eu',NULL,'2011-02-20 16:54:52.262843+0000','2011-02-20 16:54:52.262843+0000','Representante: Ricardo Gómez');
+INSERT INTO "contact_book_bussinesses" VALUES(10,'Aramis',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'comercial@aramisdecor.com','www.aramisdecor.com','2011-02-20 16:57:55.351431+0000','2011-02-20 17:10:16.237773+0000','Tela plastificada para manteles, línea de copas y otras cristalerías pero de plástico. Productos de Asia, y ofertas especiales. 
+Pedir código de entrada al área profesional de la web por correo. ');
+INSERT INTO "contact_book_bussinesses" VALUES(11,'Camacho*','Camacho S.Ltd. ',NULL,'Avenida José Ortega y Gasset 301. Pol. Ind. San Luis. ',NULL,'29006','Málaga ',NULL,'España','952 322 900/4','ventas@e-camacho.com','www.e-camacho.com','2011-02-21 17:41:22.603418+0000','2011-02-21 17:41:58.104657+0000','Agente: Miguel Angel Luque Liras. 
+Regalos, menaje y hogar. 
+Vimos q tenían buenos precios y productos. ');
+INSERT INTO "contact_book_bussinesses" VALUES(12,'Concoral*',NULL,NULL,'Camí de la Ca La Madrona, 19-21. Pol. Ind. Mata Rocafonda',NULL,'08304','Mataró','Barcelona','España','93 741 42 40','concoral@concoral.es','www.concoral.es','2011-02-21 18:36:00.529175+0000','2011-02-21 18:44:29.318575+0000','Flores y plantas artificiales (precioso)
+Tenemos catalogo en cd. 
+Representante: Emeterio Martínez Dorado. 
+Fax: 93 757 70 01');
+INSERT INTO "contact_book_bussinesses" VALUES(13,'Sukima Decor*',NULL,NULL,'C/ Progress 134A. Pol. Ind.  Campo Aníbal- n II. ',NULL,'46530','Puzol','Valencia ','España','96 142 29 46','info@sukimadecor.com ','www.sukimadecor.com','2011-02-21 18:43:30.105866+0000','2011-02-21 18:43:30.105866+0000','Buenos cuadros. 
+Representante: Sonia. 
+Fax: 96 142 29 47');
+INSERT INTO "contact_book_bussinesses" VALUES(14,'Pobra House of Christmas*',NULL,NULL,'Pobra A/S Naverland 22',NULL,'DK-2600','Glostrup',NULL,'Denmark','(45) 43 27 80 41','pobra@pobra.com','www.pobra.com','2011-02-22 17:30:09.837111+0000','2011-02-22 17:31:24.349483+0000','Decoración de Navidad muy bonita.
+Jefe de ventas España: Pedro Gil
+Fax: (45) 43 72 80 80');
+INSERT INTO "contact_book_bussinesses" VALUES(15,'Porcelanas VP*',NULL,NULL,'Parque Empresarial Pereiro de Aguiar. Vía central 31. ',NULL,'32792','Pereiro de Aguiar','Ourense','España','98 825 9 534','info@porcelanas-vp.com','www.porcelanas-vp.com','2011-02-22 17:47:21.063517+0000','2011-02-22 17:47:21.063517+0000','Decoración de conchas marinas muy bellas. 
+Agente de ventas: Antonio Montero Ayones. 
+Fax: 988 25 96 98');
+INSERT INTO "contact_book_bussinesses" VALUES(16,'Fisura',NULL,NULL,'Pol.  Ind. Villadangos. Calle 2. Parcela 43. ',NULL,'24392','Villadangos del Páramo','León ','España',' 98 739 14 91',NULL,'www.fisura.com','2011-02-22 17:57:14.384034+0000','2011-02-22 18:05:44.543133+0000','Representante: Ramón de Lucio Quindós
+Fax: 98 739 14 07');
+INSERT INTO "contact_book_bussinesses" VALUES(17,'Gertru*s',NULL,NULL,'Carrer Riu de l''Or, 17- local. ',NULL,'08034','Barcelona ','España',NULL,'93 252 05 20','getrusgertrus@hotmail.com',NULL,'2011-02-22 18:09:13.413110+0000','2011-02-22 18:09:13.413110+0000',NULL);
+INSERT INTO "contact_book_bussinesses" VALUES(18,'Poessa the paper & office equipment spain',NULL,NULL,'Avenida Cervantes 35,','Apdo. Correos n 9. 48480. Arrigorriaga-Vizacaya. ','48970','Basauri','Vizacaya','España','94 671 30 00','comercial@podada.com','www.podada.com','2011-02-22 18:18:55.087543+0000','2011-02-22 18:18:55.087543+0000','Representante Luis Aguirre. 
+Fax: 94 671 31 29');
+INSERT INTO "contact_book_bussinesses" VALUES(19,'Luis','Aguirre ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'638 296 762',NULL,'2011-02-22 18:20:27.307682+0000','2011-02-22 18:20:27.307682+0000','Representante Poessa');
+INSERT INTO "contact_book_bussinesses" VALUES(20,'Noberplast, bolsas papel, plástico y tela. ',NULL,NULL,'C/ Avícola. Parcela 106. ','Expo: c/ Miguel Yutse, 9. 28037. Madrid. ','28860','Paracuellos del Jarama','Madrid ','España','91 658 42 42','noberplast@noberplast.com',NULL,'2011-02-22 18:31:12.341560+0000','2011-02-22 18:31:12.341560+0000',NULL);
+CREATE TABLE "contact_book_suppliers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "bussiness_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "contact_book_contacts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "bussiness_id" integer, "person_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "contact_book_appointments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "person_id" integer, "time" datetime, "location" varchar(255), "notes" text, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "contact_book_appointments" VALUES(1,6,'2011-02-24 17:30:00.000000+0000','Tienda',NULL,'2011-02-24 10:21:44.833616+0000','2011-02-24 10:21:44.833616+0000');
+INSERT INTO "contact_book_appointments" VALUES(2,2,'2011-02-25 10:30:00.000000+0000','Tienda',NULL,'2011-02-24 10:22:17.271885+0000','2011-02-24 10:22:17.271885+0000');
+CREATE TABLE "pos_cash_registers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "location" varchar(255), "acc_account_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "pos_sales" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "time" datetime, "customer_id" integer, "cash_register_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "pos_sale_lines" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sale_id" integer, "rate_id" integer, "product_id" integer, "quantity" integer, "inventory_movement_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "inventory_inventories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "date" datetime, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "inventory_inventory_balances" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "inventory_id" integer, "product_id" integer, "quantity" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "inventory_inventory_movements" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "product_id" integer, "quantity" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "products_product_categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "parent_id" integer, "lft" integer, "rgt" integer, "created_at" datetime, "updated_at" datetime);
+INSERT INTO "products_product_categories" VALUES(29,'zsfhsh',NULL,NULL,NULL,'2011-03-16 22:19:00.821174','2011-03-16 22:19:00.821174');
+INSERT INTO "products_product_categories" VALUES(30,'zxcbsb',NULL,NULL,NULL,'2011-03-16 22:19:03.672391','2011-03-16 22:19:03.672391');
+CREATE TABLE "products_products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "measurement_unit" varchar(255), "product_category_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "prices_prices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "rate_id" integer, "product_id" integer, "price" decimal, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "prices_rates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "discount" integer, "created_at" datetime, "updated_at" datetime);
+CREATE TABLE "prices_product_groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "rate_id" integer, "created_at" datetime, "updated_at" datetime);
+CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
+COMMIT;

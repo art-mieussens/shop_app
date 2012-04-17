@@ -1,0 +1,16 @@
+<tr>
+	<td><%= merchandise_reception.received_at.strftime "%d/%m/%y" if merchandise_reception.received_at %></td>
+	<td><%= merchandise_reception.supplier.name if merchandise_reception.supplier %></td>
+	<td><%= link_to merchandise_reception.reception_note_code, merchandise_reception_path(merchandise_reception) if merchandise_reception.reception_note_code %></td>
+	<td><%= link_to merchandise_reception.invoice_code, merchandise_reception_path(merchandise_reception) if merchandise_reception.invoice_code %></td>
+	<% if merchandise_reception.closed %>
+		<td><%= image_tag "icons/locked.png", :alt => "cerrada" %></td>
+	<% else %>
+		<td>
+			<%= link_to image_tag("icons/edit.png", :alt => "Editar"), edit_merchandise_reception_path(merchandise_reception) %>
+			<%= link_to image_tag("icons/products.png", :alt => "productos"), merchandise_reception_merchandise_reception_lines_path(merchandise_reception) %>
+			<%= merchandise_reception.closed %>
+			<%= link_to image_tag("icons/remove.png", :alt => "Borrar"), merchandise_reception_path(merchandise_reception), :method => :delete, :confirm => "Seguro que quiere borrar esta nota de recepción?" %>
+		</td>
+	<% end %>
+</tr>

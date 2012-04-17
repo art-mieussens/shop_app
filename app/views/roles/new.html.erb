@@ -1,0 +1,6 @@
+<% if @parent %>
+	<h1>Nuevo subrol de <%= @parent.name %></h1>
+<% else %>
+	<h1>Nuevo Rol</h2>
+<% end %>
+<%= render "form" %>

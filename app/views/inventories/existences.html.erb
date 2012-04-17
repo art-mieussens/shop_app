@@ -1,0 +1,8 @@
+<h2>Existencias</h2>
+
+<%= form_tag inventories_existences_make_spreadsheet_url, :method => :post do %>
+
+	<%= label_tag 'Fecha - Hora:' %> <%= select_datetime(Time.now, :order => [:day,:month, :year]) %> <br />
+	<%= submit_tag "Generar documento", :name => nil %> <br />
+
+<% end %>

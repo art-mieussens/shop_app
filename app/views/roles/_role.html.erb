@@ -1,0 +1,16 @@
+<li>
+	<% if current_user_has_role? "ver roles" %>
+		<% if current_user_has_role? "editar roles" %>
+			<%= link_to role.name, edit_role_path(role) %>
+		<% else %>
+			<%= role.name %>
+		<% end %>
+		<%= link_to image_tag("icons/add.png", :alt => "añadir"), new_role_role_path(role) if current_user_has_role? "crear roles" %>
+		<%= link_to image_tag("icons/remove.png", :alt => "borrar"), role, :method => :delete, :confirm => "Seguro que desea borrar el rol #{role.name} y todos sus subroles?" if role.name != "root" and current_user_has_role? "borrar roles" %>
+	<% end %>
+	<% unless role.children_count == 0 %>
+		<ul>
+			<%= render :partial => "role", :collection => role.direct_children, :as => :role %>
+		</ul>
+	<% end %>	
+</li>

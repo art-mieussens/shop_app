@@ -1,0 +1,6 @@
+<% if @parent %>
+	<h1>Nueva Subcategoría de <%= @parent.name %></h1>
+<% else %>
+	<h1>Nueva Categoría de Productos</h1>
+<% end %>
+<%= render 'form' %>

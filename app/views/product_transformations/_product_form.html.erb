@@ -1,0 +1,6 @@
+<%= form_for @product_transformation_line, :url => create_product_product_product_transformation_path(@product) do |f| %>
+	<%= f.label "Descripción" %> 	<%= text_field_tag :description, @product.description, :size => 60 %> <br />
+	<%= f.label "Código extra" %>	<%= text_field_tag :extra_code %> <br />
+	
+	<%= f.submit "Crear producto"%>
+<% end %>

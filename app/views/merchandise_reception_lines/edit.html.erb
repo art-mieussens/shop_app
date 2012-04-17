@@ -1,0 +1,13 @@
+<h1>Editar linea de albarán</h1>
+<fieldset>
+	<%= form_for @merchandise_reception_line, :url => merchandise_reception_merchandise_reception_line_path(@merchandise_reception, @merchandise_reception_line), :method => :put do |f| %>
+		Código de producto: <%= @merchandise_reception_line.product.code %><br />
+		Descripción: <%= @merchandise_reception_line.product.description %><br />
+		Categoría: <%= @merchandise_reception_line.product.product_category.name %><br />
+		<%= f.label :cantidad %>
+		<%= f.text_field :quantity %><br />
+		<%= f.label :costo_unitario %>
+		<%= f.text_field :unit_cost %><br />
+		<%= f.submit 'Modificar'%>
+	<% end %>
+</fieldset>

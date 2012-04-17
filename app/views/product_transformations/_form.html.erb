@@ -1,0 +1,23 @@
+<%= form_for @product_transformation, :url => product_product_transformation_path do |f| %>
+	
+	<% if @product_transformation.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@product_transformation.errors.count, "error") %> prohibited this product transformation from being saved:</h2>
+	      <ul>
+		      <% @product_transformation.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+		<%= f.label 'producto' %>	<%= @product.code %> / <%= @product.description %> <br/>
+		<%= f.label 'cantidad' %>	<%= f.text_field :quantity, :size => 10 %> <br />
+	</fieldset>
+	
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end %>

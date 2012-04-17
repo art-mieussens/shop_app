@@ -1,0 +1,27 @@
+<h2>Transformación de producto</h2>
+<h3> <%= @product_transformation.product.code %> / <%= @product_transformation.product.description %> </h3>
+
+<table>
+	<th>Código</th> <th>Descripción</th> <th>Costo Unit.</th> <th>Cantidad</th> 
+	<%= render @product_transformation_lines %>
+</table>
+
+<fieldset>
+	<h2>Añadir productos</h2>
+	<%= form_tag product_product_transformation_product_transformation_lines_path(@product_transformation), :method => :get do %>
+		<%= label_tag 'Categoría:' %> <%= select_tag :product_category_id, options_from_collection_for_select(@categories, :id, :name,  :selected => params[:product_category_id]) %> <br />
+		<%= label_tag 'Búsqueda:' %>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Filtrar", :name => nil %>
+	<% end %>
+	<br />
+	<% if @products %>
+		<%= paginate @products %>
+		<table>
+			<th>Código</th> <th>Descripción</th> <th>Categoría</th> <th>Cantidad</th> <th>Costo Unit.</th> <th>Importe</th>
+			<%= render :partial => "product", :collection => @products %>
+		</table>
+	<% end %>
+</fieldset>
+
+<%= focus_on_load "search" %>

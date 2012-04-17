@@ -1,0 +1,20 @@
+<%= form_for @role, :url => role_roles_path(@parent) do |f| %>
+
+	<% if @role.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+	      <ul>
+		      <% @role.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<%= f.label :nombre %><br />
+	<%= f.text_field :name %><br />
+	<%= f.submit %>
+
+<% end %>
+
+<%= focus_on_load "role_name" %>

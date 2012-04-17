@@ -1,0 +1,39 @@
+<%= form_for @bussiness do |f| %>
+	
+	<% if @bussiness.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@bussiness.errors.count, "error") %> prohibited this product from being saved:</h2>
+	      <ul>
+		      <% @bussiness.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+			<%= f.label :nombre %> <%= f.text_field :name %><br />
+			<%= f.label :nombre_fiscal %> <%= f.text_field :fiscal_name, :size => 40 %><br />
+			<%= f.label :cif %> <%= f.text_field :cif, :size => 12 %><br />
+			<%= f.label :teléfono %> <%= f.text_field :phone, :size => 20 %><br />
+			<%= f.label :fax %> <%= f.text_field :fax, :size => 20 %><br />
+			<%= f.label :email %> <%= f.text_field :email %><br />
+			<%= f.label :web %> <%= f.text_field :website %><br />
+			<%= f.label :dirección_1 %> <%= f.text_field :address1, :size => 50 %><br />
+			<%= f.label :dirección_2 %> <%= f.text_field :address2, :size => 50 %><br />
+			<%= f.label :código_postal %> <%= f.text_field :postal_code, :size => 6 %><br />
+			<%= f.label :ciudad %> <%= f.text_field :city, :size => 40 %><br />
+			<%= f.label :provincia %> <%= f.text_field :state %><br />
+			<%= f.label :país %> <%= f.text_field :country %><br />
+			<br />
+			<%= f.label :cliente? %> <%= f.check_box :customer, {}, true, false %><br />
+			<%= f.label :proveedor? %> <%= f.check_box :supplier, {}, true, false %><br />
+			<br />
+			<%= f.label :notas %> <%= f.text_area :notes, :size => "50x10" %><br />
+	</fieldset>
+	
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end %>

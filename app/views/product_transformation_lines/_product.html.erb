@@ -1,0 +1,22 @@
+<tr>
+	<td><%= product.code %></td>
+	<td><%= product.description %></td>
+	<td><%= product.product_category.name %></td>
+
+	<%= form_for :merchandise_reception_line, :url => merchandise_reception_merchandise_reception_lines_path(@merchandise_reception), :method => :post do |f| %>
+		<td>
+			<%= f.text_field :quantity, :size => 4 %>
+		</td>
+		<td>
+			<%= f.text_field :unit_cost, :size => 6 %>
+		</td>
+		<td>
+			<%= f.text_field :total, :size => 6 %>
+		</td>
+		<td>
+			<%= hidden_field_tag :product_id, product.id %>
+			<%= f.submit "añadir", :name => nil %>
+		</td>
+	<% end %>
+
+</tr>

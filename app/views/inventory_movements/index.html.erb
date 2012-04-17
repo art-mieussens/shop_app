@@ -1,0 +1,23 @@
+<h1>Movimientos de inventario</h1>
+
+<% if @product %>
+	<dl>
+		<dt>Producto</dt>
+		<dd>
+			Proveedor: <%= @product.supplier.name %><br />
+			Código: <%= @product.code %><br />
+			Descripción: <%= @product.description %><br />
+			Cantidad: <%=@product.quantity %><br />
+		</dd>
+	</dl>
+<% end %>
+
+<table>
+	<th>Fecha</th> <th>Hora</th> <th>Cantidad</th> <th>Costo unitario</th>
+	<%= render @inventory_movements %>
+</table>
+
+<% if @product %>
+	<br />
+	<%= link_to "Regresar al producto", @product %>
+<% end %>

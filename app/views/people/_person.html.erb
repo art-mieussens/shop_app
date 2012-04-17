@@ -1,0 +1,6 @@
+<tr>
+	<td><%= link_to person.first_name<<" "<<person.last_name, person %></td>
+	<td><%= person.email %></td>
+	<td><%= person.cell_phone %></td>
+	<td><%= link_to image_tag('icons/remove.png'), person, :method => :delete, :confirm => "Seguro que deseas borrar a #{person.first_name} #{person.last_name}?"%>
+</tr>

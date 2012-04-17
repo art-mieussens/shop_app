@@ -1,0 +1,9 @@
+<tr>
+	<td><%= merchandise_reception_line.product.code %></td>
+	<td><%= merchandise_reception_line.product.description %></td>
+	<td><%= merchandise_reception_line.product.product_category.name %></td>
+	<td><%= merchandise_reception_line.quantity %></td>
+	<td><%= to_euros merchandise_reception_line.unit_cost %></td>
+	<td><%= link_to image_tag('icons/edit.png', :alt => 'editar'), edit_merchandise_reception_merchandise_reception_line_path(@merchandise_reception, merchandise_reception_line) %></td>
+	<td><%= link_to image_tag('icons/remove.png', :alt => 'eliminar'), merchandise_reception_merchandise_reception_line_path(@merchandise_reception, merchandise_reception_line), :method => :delete, :confirm => "Seguro que desea eliminar esta linea de albarán?" %></td>	
+</tr>

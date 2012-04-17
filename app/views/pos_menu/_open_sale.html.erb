@@ -1,0 +1,5 @@
+<tr>
+	<td><%= link_to sale.created_at.strftime("%d/%m/%Y"), sale_path(sale) %></td>
+	<td><%= link_to sale.created_at.strftime("%H:%M:%S"), sale_path(sale) %></td>
+	<td><%= to_euros(sale.total) %></td>
+</tr>

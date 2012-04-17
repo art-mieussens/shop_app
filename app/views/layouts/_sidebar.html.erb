@@ -1,0 +1,110 @@
+<div id="sidebar">
+	<ul>
+		<li>
+			<p>
+				<% if logged_in? %>
+					Sesión de <%= current_user.name %> |
+					<%= link_to "salir", :connection, :method => :delete %>
+				<% else %>
+					No conectado | <%= link_to "Entrar", new_connection_path %>
+				<% end %>
+			</p>
+		</li>
+		
+		<% if ['products_menu',
+			 'product_categories', 'products', 'product_transformations',
+			 'merchandise_receptions', 'merchandise_reception_lines',
+			 'inventories'].include? controller_name %>
+			<li>
+				<h2>Productos</h2>
+				<ul>
+					<li><%= link_to 'Categorías', product_categories_path %></li>
+					<li><%= link_to 'Productos', products_path %></li>
+					<li><%= link_to 'Transformar', product_transformations_path %></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Tarifas</h2>
+				<ul>
+					<li><%= link_to 'Tarifas', rates_path %></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Pedidos</h2>
+				<ul>
+					<li>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h2>Inventarios</h2>
+				<ul>
+					<li><%= link_to 'Notas de recepción', merchandise_receptions_path %></li>					
+					<li><%= link_to 'Existencias', inventories_existences_path %></li>
+					<li><%= link_to 'Inventarios', '/products_menu' %>
+				</ul>
+			</li>
+		<% end %>
+		
+		<% if [	'pos_menu' ].include? controller_name %>
+			<li>
+				<h2>TPV</h2>
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+		<% end %>
+		
+		<% if [	'sales_menu', 'sales', 'sales_lines'].include? controller_name %>
+			<li>
+				<h2>Ventas</h2>
+				<ul>
+					<li><%= link_to 'Ventas', sales_path %></li>
+					<li><%= link_to 'Resumen de ventas', abstract_sales_path %></li>
+				</ul>
+			</li>
+		<% end %>
+
+		<% if 	controller_name == "contact_book_menu" || controller_name == "appointments" ||
+			 	controller_name == "bussinesses" || controller_name == "contacts" ||
+				controller_name == "customers" || controller_name == "employees" ||
+				controller_name == "people" || controller_name == "suppliers" %>
+			<li>
+				<h2>Empresas</h2>
+				<ul>
+					<li><%= link_to 'Empresas', bussinesses_path %></li>
+					<li><%= link_to 'Proveedores', bussinesses_path(:select => :supplier) %></li>
+					<li><%= link_to 'Clientes', bussinesses_path(:select => :customer) %></li>														
+				</ul>
+			</li>
+			<li>
+				<h2>Personas</h2>
+				
+				<ul>
+					<li><%= link_to 'Personas', people_path %></li>
+					<li><%= link_to 'Contactos', people_path %></li>
+					<li><%= link_to 'Clientes', people_path(:select => :customer) %></li>
+					<li><%= link_to 'Empleados', people_path(:select => :employee) %></li>														
+				</ul>
+			</li>
+			<li>
+				<h2>Citas</h2>
+				<ul>
+					<li><%= link_to 'Citas', appointments_path %></li>
+				</ul>
+			</li>
+		<% end %>
+		
+		<% if ['admin_menu', 'roles', 'users'].include? controller_name %>
+			<li>
+				<h2>Administración</h2>
+				<ul>
+					<li><%= link_to 'Roles', roles_path %></li>
+					<li><%= link_to 'Usuarios', users_path %></li>
+					<li><%= link_to 'Impresoras', printers_path %>													
+				</ul>
+			</li>
+		<% end %>
+		
+	</ul>
+</div>

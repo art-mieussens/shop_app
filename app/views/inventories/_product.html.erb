@@ -1,0 +1,11 @@
+<% unless product.quantity == 0 %>
+	<tr>
+		<td><%= link_to product.code, product_path(product) %></td>
+		<td><%= link_to product.description, product_path(product) %></td>
+		<td><%= product.product_category.name %></td>
+		<td><%= product.supplier.name %></td>
+		<td><%= product.vat ? product.vat : "18" %>%</td>
+		<td><%= product.quantity %></td>
+		<td><%= to_euros product.unit_cost %></td>
+	</tr>
+<% end %>

@@ -1,0 +1,36 @@
+<fieldset>
+	<h2>Añadir productos</h2>
+	<%= form_tag merchandise_reception_merchandise_reception_lines_path(@merchandise_reception), :method => :get do %>
+			<%= label_tag 'Categoría:' %> <%= select_tag :product_category_id, options_from_collection_for_select(@categories, :id, :name,  :selected => params[:product_category_id]) %> <br />
+			<%= label_tag 'Búsqueda:' %>
+			<%= text_field_tag :search, params[:search] %>
+			<%= submit_tag "Filtrar", :name => nil %>
+	<% end %>
+	<br />
+	<% if @products %>
+		<%= paginate @products %>
+		<table>
+			<th>Código</th> <th>Descripción</th> <th>Categoría</th> <th>Cantidad</th> <th>Costo Unit.</th> <th>Importe</th>
+			<%= render :partial => "product", :collection => @products %>
+		</table>
+	<% end %>
+</fieldset>
+<h2>
+	<% if @merchandise_reception.reception_note_code %>
+		Albarán <%= @merchandise_reception.reception_note_code %>
+	<% end %>
+	<% ', ' if @merchandise_reception.reception_note_code && @merchandise_reception.invoice_code %>
+	<% if @merchandise_reception.invoice_code %>
+		 Factura <%= @merchandise_reception.invoice_code %>
+	<% end %>
+	 de <%= @merchandise_reception.supplier.name %>
+</h2>
+<% if @merchandise_reception_lines %>
+	<%= paginate @merchandise_reception_lines %>
+	<table>
+		<th>Código</th> <th>Descripción</th> <th>Categoría</th> <th>Cantidad</th> <th>Costo Unit.</th>
+		<%= render @merchandise_reception_lines %>
+	</table>
+<% end %>
+
+<%= focus_on_load "search" %>

@@ -1,0 +1,2 @@
+class InventoryBalancesController < ApplicationController
+end

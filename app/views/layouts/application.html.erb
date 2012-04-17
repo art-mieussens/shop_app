@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Homy hogar</title>
+  <%= stylesheet_link_tag "homy" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<%= render 'layouts/menu' %>
+		</div>
+		<div id="page">
+			<div id="page-bgtop">
+				<div id="page-bgbtm">
+					<div id="content">
+						<%= render 'layouts/notices' %>
+						<%= yield %>					
+					</div>
+				</div>
+			</div>
+			<%= render 'layouts/sidebar'%>
+			<div style="clear: both;">&nbsp;</div>
+		</div>
+	</div>
+	<div id="footer"><p>© Arturo Mieussens</p></div>
+</body>
+</html>

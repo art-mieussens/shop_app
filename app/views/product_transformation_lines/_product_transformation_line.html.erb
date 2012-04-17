@@ -1,0 +1,10 @@
+<li>
+	<dl>
+		<dd> Código: <%= product_transformation_line.product.code %> </dd>
+		<dd> Descripción: <%= product_transformation_line.product.description %> </dd>
+		<dd> Cantidad: <%= product_transformation_line.quantity %> </dd>
+		<dd> Peso unitario: <%= product_transformation_line.weight %> </dd>
+		<dd> <%= link_to "Editar", edit_product_transformation_line_path(product_transformation_line) %> </dd>
+		<dd> <%= link_to "Borrar", product_transformation_line_path(product_transformation_line), :method => :destroy %> </dd>
+	</dl>
+</li>

@@ -1,0 +1,27 @@
+<tr>
+	<td>
+		<%= link_to user.name, edit_user_path(user) %>
+		<%= link_to image_tag('icons/remove.png', :alt => "Eliminar"), user_path(user), :method => :delete %>
+	</td>
+	<td>
+		<% @roles = user.roles.order(:name) %>
+		<% @available_roles = @all_roles - @roles %>
+		<ul>
+			<% @roles.each do |role| %>
+				<li>
+					<%= role.name %>
+					<%= link_to image_tag('icons/remove.png', :alt => "Eliminar"), user_role_path(user, role), :method => :delete %> 
+				</li>
+			<% end %>
+		<ul/>
+		<% if @available_roles %>
+			<%= form_for user do |f| %>
+				<%= f.select "roles", options_from_collection_for_select( @available_roles, "id", "name")  %>
+				<%= f.submit "+" %>
+			<% end %>
+		<% end %>
+	</td>
+	<td><%= link_to user.person.first_name<<' '<<user.person.last_name, user.person if user.person %></td>
+</tr>
+
+				

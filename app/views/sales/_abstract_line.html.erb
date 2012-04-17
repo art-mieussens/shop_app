@@ -1,0 +1,7 @@
+<tr>
+	<td><%= line[:date].strftime("%d/%m/%Y") %></td>
+	<td><%= line[:sales_number] %></td>
+	<td><%= line[:first_ticket] %></td>
+	<td><%= line[:last_ticket] %></td>
+	<td><%= to_euros(line[:sales_total]) %></td>
+</tr>

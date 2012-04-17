@@ -1,0 +1,2 @@
+class RoleAssignmentsController < ApplicationController
+end

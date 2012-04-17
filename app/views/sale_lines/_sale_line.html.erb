@@ -1,0 +1,9 @@
+<tr>
+	<td><%= sale_line.product.code %></td>
+	<td><%= sale_line.product.description %></td>
+	<td><%= sale_line.rate.description %></td>
+	<td><%= to_euros(sale_line.price) %></td>
+	<td><%= sale_line.quantity %></td>
+	<td><%= to_euros(sale_line.price * sale_line.quantity) %></td>
+	<td><%= link_to image_tag('icons/remove.png', :alt => "remove"), sale_sale_line_path(@sale, sale_line), :method => :delete %>
+</tr>

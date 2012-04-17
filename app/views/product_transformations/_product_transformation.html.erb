@@ -1,0 +1,9 @@
+<li>
+	Proveedor: <%= product_transformation.product.supplier.name %> <br />
+	Categoría: <%= product_transformation.product.product_category.name %> <br />
+	Código: <%= product_transformation.product.code %> <br />
+	Descripción: <%= product_transformation.product.description %> <br />
+	Existencias: <%= product_transformation.product.quantity %> <br />
+	<ul><li><%= link_to "Aplicar transformación", product_transformation_apply_path(product_transformation), :method => :post %></li></ul>
+	<br />
+</li>

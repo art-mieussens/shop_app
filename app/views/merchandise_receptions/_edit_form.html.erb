@@ -1,0 +1,88 @@
+<%= form_for @merchandise_reception do |f| %>
+	
+	<% if @merchandise_reception.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@merchandise_reception.errors.count, "error") %> prohibited this merchandise reception from being saved:</h2>
+	      <ul>
+		      <% @merchandise_reception.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+		<%= f.label :proveedor %>			<%= f.collection_select( :supplier_id, @suppliers, :id, :name, :prompt => "Seleccione proveedor" ) %> <br />
+		<%= f.label "Ref. albarán" %>		<%= f.text_field :reception_note_code %> <br />
+		<%= f.label "Ref. factura" %>		<%= f.text_field :invoice_code %> <br />
+		<%= f.label :fecha_de_recepción %>	<%= f.date_select( :received_at, :order => [:day, :month, :year], :start_year => 2011, :end_year => Time.now.year, :default => Time.now ) %> <br />
+		<%= f.label :recibido_por %> 		<%= f.collection_select( :received_by, @employees, :id, :full_name, :prompt => "Seleccione" ) %> <br />
+		<%= f.label :notas %>				<%= f.text_area :notes, :size => '40x10' %> <br />
+		<%= f.label "Lineas de albarán" %>	<%= @merchandise_reception.merchandise_reception_lines.count %> <br />
+		<%= f.label "Productos" %>			<%= @merchandise_reception.merchandise_reception_lines.collect{|mrl| mrl.quantity.to_i}.reduce(:+) %> <br />
+		<br />
+		<table>
+			<tr><td><%= f.label "Descuento" %></td><td><%= f.text_field :discount, :size => 6, :value => number_with_precision(@merchandise_reception.discount, :precision => 2)  %> </td></tr>
+			<tr><td><%= submit_tag "recalcular"%></td></tr>
+			
+			<tr>
+				<th></th> <th>18%</th> <th>8%</th> <th>4%</th> <th>Total</th>
+			</tr>
+			<tr>
+				<td><%= f.label "Montos" %></td>
+				<td><%= f.text_field :sum18, :size => 6, :value => number_with_precision(@merchandise_reception.sum18, :precision => 2) %> </td>
+				<td><%= f.text_field :sum8, :size => 6, :value => number_with_precision(@merchandise_reception.sum8, :precision => 2) %> </td>
+				<td><%= f.text_field :sum4, :size => 6, :value => number_with_precision(@merchandise_reception.sum4, :precision => 2) %> </td>
+				<td><%= to_euros(@merchandise_reception.sum18 + @merchandise_reception.sum8 + @merchandise_reception.sum4) %> </td>
+			</tr>
+			<tr>
+				<td><%= f.label "Descuento" %></td>
+				<td><%= f.text_field :disc18, :size => 6, :value => number_with_precision(@merchandise_reception.disc18, :precision => 2) %> </td>
+				<td><%= f.text_field :disc8, :size => 6, :value => number_with_precision(@merchandise_reception.disc8, :precision => 2) %> </td>
+				<td><%= f.text_field :disc4, :size => 6, :value => number_with_precision(@merchandise_reception.disc4, :precision => 2) %> </td>
+				<td><%= to_euros(@merchandise_reception.disc18 + @merchandise_reception.disc8 + @merchandise_reception.disc4) %> </td>
+				
+			</tr>
+			<tr>
+				<th><%= f.label "Base Imponible" %></th>
+				<td><%= f.text_field :bi18sum, :size => 6, :value => number_with_precision(@merchandise_reception.bi18sum, :precision => 2) %> </td>
+				<td><%= f.text_field :bi8sum, :size => 6, :value => number_with_precision(@merchandise_reception.bi8sum, :precision => 2) %> </td>
+				<td><%= f.text_field :bi4sum, :size => 6, :value => number_with_precision(@merchandise_reception.bi4sum, :precision => 2) %> </td>
+				<td><%= to_euros(@merchandise_reception.bi18sum +  @merchandise_reception.bi8sum +  @merchandise_reception.bi4sum) %> </td>
+			</tr>
+			<tr>
+				<th><%= f.label "IVA" %></th>
+				<td><%= f.text_field :vat18sum, :size => 6, :value => number_with_precision(@merchandise_reception.vat18sum, :precision => 2) %> </td>
+				<td><%= f.text_field :vat8sum, :size => 6, :value => number_with_precision(@merchandise_reception.vat8sum, :precision => 2) %> </td>
+				<td><%= f.text_field :vat4sum, :size => 6, :value => number_with_precision(@merchandise_reception.vat4sum, :precision => 2) %> </td>
+				<td><%= to_euros(@merchandise_reception.vat18sum +  @merchandise_reception.vat8sum +  @merchandise_reception.vat4sum) %> </td>
+			</tr>
+			<tr>
+				<th><%= f.label "Rec. equiv." %></th>
+				<td><%= f.text_field :req18sum, :size => 6, :value => number_with_precision(@merchandise_reception.req18sum, :precision => 2) %> </td>
+				<td><%= f.text_field :req8sum, :size => 6, :value => number_with_precision(@merchandise_reception.req8sum, :precision => 2) %> </td>
+				<td><%= f.text_field :req4sum, :size => 6, :value => number_with_precision(@merchandise_reception.req4sum, :precision => 2) %> </td>
+				<td><%= to_euros(@merchandise_reception.req18sum + @merchandise_reception.req8sum +  @merchandise_reception.req4sum) %> </td>
+			</tr>
+			<tr>
+				<th><%= f.label "Total" %></th>
+				<td><%= to_euros (@merchandise_reception.bi18sum + @merchandise_reception.vat18sum + @merchandise_reception.req18sum)  %> </td>
+				<td><%= to_euros (@merchandise_reception.bi8sum + @merchandise_reception.vat8sum + @merchandise_reception.req8sum) %> </td>
+				<td><%= to_euros (@merchandise_reception.bi4sum + @merchandise_reception.vat4sum + @merchandise_reception.req4sum)  %> </td>
+				<th><%= to_euros (@merchandise_reception.bi18sum + @merchandise_reception.vat18sum + @merchandise_reception.req18sum +
+				 				 @merchandise_reception.bi8sum + @merchandise_reception.vat8sum + @merchandise_reception.req8sum +
+				 				 @merchandise_reception.bi4sum + @merchandise_reception.vat4sum + @merchandise_reception.req4sum) %> </th>
+			</tr>
+		</table>
+		<br />
+		<%= f.label "Costo transporte" %> <%= f.text_field :transport_cost, :size => 6, :value => number_with_precision(@merchandise_reception.transport_cost, :precision => 2) %> <br />
+		<%= f.label "Otros costos" %> <%= f.text_field :other_cost, :size => 6, :value => number_with_precision(@merchandise_reception.other_cost, :precision => 2) %> <br />
+	</fieldset>
+
+	<div class="actions">
+		<%= f.submit "Modificar nota de recepción"%>
+	</div>
+	
+<% end %>
+
+<%= disable_enter %>

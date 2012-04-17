@@ -1,0 +1,31 @@
+<%= form_for @product do |f| %>
+	
+	<% if @product.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+	      <ul>
+		      <% @product.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+		<%= f.label :categoría %> 		<%= f.collection_select( :product_category_id, @categories, :id, :name, :prompt => "Seleccione categoría" ) %> <br />
+		<%= f.label :proveedor %> 		<%= f.collection_select( :supplier_id, @suppliers, :id, :name, :prompt => "Seleccione proveedor" ) %> <br />
+		<%= f.label :descripción %>		<%= f.text_field :description, :size => 80 %> <br />
+		<%= f.label :código %>			<%= f.text_field :code %> <br />
+		<%= f.label :cod_de_barras %>	<%= f.text_field :bar_code, :size => 50 %> <br />
+		<%= f.label :IVA %>				<%= f.select( :vat, { "18%" => 18, "8%" => 8, "4%" => 4} ) %> <br />
+		<%= f.label :en_venta? %>		<%= f.check_box :for_sale, {}, true, false %> <br />
+		<%= f.label :precio %>			<%= f.text_field :price, :size => 10 %>
+	</fieldset>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end %>
+
+<%= focus_on_load "product_description" %>
+<%= disable_enter %>

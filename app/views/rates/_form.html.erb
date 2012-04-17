@@ -1,0 +1,20 @@
+<%= form_for(@rate) do |f| %>
+  <% if @rate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rate.errors.count, "error") %> prohibited this rate from being saved:</h2>
+
+      <ul>
+      <% @rate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label "Descripción:" %> <%= f.text_field :description %> <br />
+  <%= f.label "Expresión:" %> <%= f.text_field :expression %> <br />
+
+  <div class="actions">
+    <%= f.submit "Crear"%>
+  </div>
+<% end %>

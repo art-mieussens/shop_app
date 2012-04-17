@@ -1,0 +1,6 @@
+<h1>Usuarios <%= link_to image_tag("icons/add.png", :alt => "Añadir"), new_user_path %> </h1>
+
+<table>
+	<th>Usuario</th> <th>Roles</th> <th>Contacto</th>
+	<%= render :partial => "user", :collection => @users, :as => :user %>
+</table>

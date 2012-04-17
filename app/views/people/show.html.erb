@@ -1,0 +1,32 @@
+<h1>
+	<%= link_back %>
+	Detalles de <%= @person.first_name<<" "<<@person.last_name %>
+</h1>
+
+<dl>
+	<dt>Email:</dt>
+		<dd><%= @person.email %></dd>
+	<dt>Móvil:</dt>
+		<dd><%= @person.cell_phone %></dd>
+	<dt>Tel. trabajo:</dt>
+	 	<dd><%= @person.bussiness_phone %></dd>
+	<dt>Tel. personal:</dt>
+	 	<dd><%= @person.home_phone %></dd>
+	<dt>nif:</dt>
+	 	<dd><%= @person.nif %></dd>
+	<dt>address:</dt>
+		<dd>
+			<%= @person.address1 %><br />
+			<%= @person.address2 %>
+		</dd>
+	<dt>C. Postal:</dt>
+	 	<dd><%= @person.postal_code %></dd>
+	<dt>Ciudad:</dt>
+	 	<dd><%= @person.city %></dd>
+	<dt>Provincia/Estado:</dt>
+	 	<dd><%= @person.state %></dd>
+	<dt>País:</dt>
+	 	<dd><%= @person.country %></dd>
+</dl>
+
+<%= link_to image_tag('icons/large/edit.png'), edit_person_path(@person) %>

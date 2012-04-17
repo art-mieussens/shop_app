@@ -1,0 +1,13 @@
+<h1>
+	<%= case @select
+			when "supplier" then "Proveedores"
+			when "customer" then "Clientes"
+			else "Empresas"
+		end %>
+	<%= link_to image_tag("icons/add.png", :alt => "añadir"), new_bussiness_path unless @select %>
+</h1>
+
+<table>
+	<th>Nombre</th><th>Teléfono</th><th>Fax</th><th>email</th><th>Web</th>
+	<%= render @bussinesses %>
+</table>

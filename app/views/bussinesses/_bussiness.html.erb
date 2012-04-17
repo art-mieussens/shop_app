@@ -1,0 +1,12 @@
+<tr>
+	<td><%= link_to bussiness.name, bussiness_path(bussiness) %></td>
+	<td><%= bussiness.phone %></td>
+	<td><%= bussiness.fax %></td>
+	<td><%= bussiness.email %></td>
+	<td><%= bussiness.website %></td>
+	<td>
+		<%= link_to image_tag("icons/edit.png", :alt => "editar"), edit_bussiness_path(bussiness) if current_user_has_role? "editar_empresas" %>
+		<%= link_to image_tag("icons/remove.png", :alt => "borrar"), bussiness, :method => :delete, :confirm => "Seguro que quiere borrar la empresa #{bussiness.name}?" if current_user_has_role? "borrar_empresas" %>
+	</td>
+</tr>
+

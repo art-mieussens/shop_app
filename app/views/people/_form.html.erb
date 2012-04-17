@@ -1,0 +1,37 @@
+<%= form_for @person do |f| %>
+	 <fieldset>
+	<%= f.label :nombre %>
+		<%= f.text_field :first_name, :size => 40  %><br />
+		<%= f.label :apellidos %>
+		<%= f.text_field :last_name, :size => 40 %><br />
+		<%= f.label :email %>
+		<%= f.text_field :email, :size => 40  %><br />	
+		<%= f.label :nif %>
+		<%= f.text_field :nif, :size => 12 %><br />
+		<%= f.label :dirección_1 %>
+		<%= f.text_field :address1, :size => 70  %><br />
+		<%= f.label :dirección_2 %>	
+		<%= f.text_field :address2, :size => 70  %><br />
+		<%= f.label :código_postal %>
+		<%= f.text_field :postal_code, :size => 8 %><br />
+		<%= f.label :ciudad %>
+		<%= f.text_field :city, :size => 40  %><br />
+		<%= f.label :provincia %>
+		<%= f.text_field :state %><br />
+		<%= f.label :país %>
+		<%= f.text_field :country %><br />
+		<%= f.label :teléfono_móvil %>
+		<%= f.text_field :cell_phone %><br />
+		<%= f.label :teléfono_trabajo %>
+		<%= f.text_field :bussiness_phone %><br />
+		<%= f.label :teléfono_casa %>
+		<%= f.text_field :home_phone %><br />
+		<br />
+		<%= f.label :cliente? %> <%= f.check_box :customer, {}, true, false %><br />
+		<%= f.label :empleado? %> <%= f.check_box :employee, {}, true, false %><br />
+		<br />
+		<%= f.label :notas %>
+		<%= f.text_area :notes , :size => "40x5"%><br />
+		<%= f.submit %>
+	</fieldset>
+<% end %>

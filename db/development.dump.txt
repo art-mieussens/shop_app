@@ -1,0 +1,20 @@
+
+INSERT INTO "contact_book_people" VALUES(1,'Eliseo','López',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'91 3430135','690 662467','2011-02-19 22:18:42.709541+0000','2011-02-19 22:18:42.709541+0000','ECLU Enmacosa');
+INSERT INTO "contact_book_people" VALUES(2,'Pedro','López',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'616 448 398','2011-02-20 15:37:33.993241+0000','2011-02-20 15:37:33.993241+0000','Representante de Item');
+INSERT INTO "contact_book_people" VALUES(3,'María del Rosario (Charo)','Lama More','mrlamamore@reaf.es',NULL,'C. Francisco Silvela 104, 3 Ext. Dcha.',NULL,'28002','Madrid','Madrid','España',NULL,'91 5614096','619 967 449','2011-02-20 16:05:08.359338+0000','2011-02-20 16:24:59.849220+0000','Asesora');
+INSERT INTO "contact_book_people" VALUES(4,'Aurora','Polo Reyes','aurora.polo@barclays.es',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'91 5155490',NULL,'2011-02-20 16:06:43.888415+0000','2011-02-20 16:06:43.888415+0000','Gestora Personal, Barclays Clara del rey 8');
+INSERT INTO "contact_book_people" VALUES(5,'Alberto','Domínguez','alberto.dominguez@fornor.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'678 78 74 36','2011-02-20 16:07:50.075867+0000','2011-02-20 16:07:50.075867+0000','Representante Fornor');
+INSERT INTO "contact_book_people" VALUES(6,'Salvatore','Martino',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'660 979 868','2011-02-20 16:23:12.301770+0000','2011-02-20 16:48:09.321113+0000','Representante Ixa');
+INSERT INTO "contact_book_people" VALUES(7,'Carmen','Del Río García','carmen@delrioflor.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'615 588 186','2011-02-20 16:40:05.066758+0000','2011-02-20 16:40:05.066758+0000','Del Río flores y plantas artificiales. ');
+INSERT INTO "contact_book_people" VALUES(8,'Miguel Ángel','Luque Arias','maluke@telefonica.net',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'607 613 435','2011-02-21 17:49:08.918688+0000','2011-02-21 17:49:08.918688+0000','Fax: 952 314 900 ');
+INSERT INTO "contact_book_people" VALUES(9,'José Luis','Ferres','jlferres.comercial@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'609 608 861','2011-02-21 18:27:06.401537+0000','2011-02-21 18:27:06.401537+0000','Reprsenante Madrid de Orval Creations
+Productos franceses preciosos, con inspiración antigua. (ver publicidad)');
+INSERT INTO "contact_book_people" VALUES(10,'Emeterio','Martínez Dorao',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'654 174 706','2011-02-21 18:37:51.942745+0000','2011-02-21 18:37:51.942745+0000','Representante de Concoral. 
+Fax: 91 525 09 05');
+INSERT INTO "contact_book_people" VALUES(11,'Sonia','XXX ',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'687 76 16 92','2011-02-21 18:46:18.202588+0000','2011-02-21 18:46:18.202588+0000','Representante de Sukima Decor. 
+');
+INSERT INTO "contact_book_people" VALUES(12,'Pedro ','Gil','pg@pobra.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'(45) 43 27 80 41',NULL,'2011-02-22 17:33:57.918265+0000','2011-02-22 17:40:37.498663+0000','Jefe de Ventas España de Pobra House of Christmas. ');
+INSERT INTO "contact_book_people" VALUES(13,'Ramón de ','Lucio Quindós','ramon@fisura.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'637 561 216','2011-02-22 18:02:49.174387+0000','2011-02-22 18:02:49.174387+0000','Representante de Fisura
+Fax: 987 172 666');
+INSERT INTO "contact_book_people" VALUES(14,'Iñaki','Ayala Sánchez ','ayala@noberplast.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'699 47 69 81','2011-02-22 18:50:43.273766+0000','2011-02-22 18:50:43.273766+0000','Noberplast');
+

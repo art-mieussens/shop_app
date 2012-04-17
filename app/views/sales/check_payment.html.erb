@@ -1,0 +1,49 @@
+<h1>Pagar</h1>
+<br />
+<table>
+	<tr>
+		<td>
+			<h2>Importe:</h2>
+		</td>
+		<td>
+			<h2><%= to_euros @sale.total %></h2>
+		</td>
+	</tr>
+	<%= form_tag sale_check_payment_path(@sale), :method => :get do %>
+		<tr>
+			<td>
+				<h2>Efectivo:</h2>
+			</td>
+			<td>
+				<h2><%= text_field_tag :payment, @payment, :size => 10 %></h2>
+			</td>
+			<td>
+				<h2><%= submit_tag "calcular" %></h2>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>Cambio:</h2>
+			</td>
+			<td>
+				<h2><%= to_euros @change %></h2>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>Tarjeta?:<h2>
+			</td>
+			<td>
+				<%= check_box_tag :card, true, @card %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<%= submit_tag "Pagar"%>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+<%= focus_on_load "payment" %>

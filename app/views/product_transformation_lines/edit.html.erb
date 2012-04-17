@@ -1,0 +1,10 @@
+<h1>Editar linea de transformación</h1>
+<fieldset>
+	<%= form_for @product_transformation_line do |f| %>
+		Código de producto: <%= @product_transformation_line.product_transformation.product.code %><br />
+		Descripción: <%= @product_transformation_line.product_transformation.product.description %><br />
+		<%= f.label :cantidad %> <%= f.text_field :quantity %><br />
+		<%= f.label :peso_unitario %> <%= f.text_field :weight %><br />
+		<%= f.submit 'Modificar'%>
+	<% end %>
+</fieldset>

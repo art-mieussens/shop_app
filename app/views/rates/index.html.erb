@@ -1,0 +1,22 @@
+<h1>Tarifas</h1>
+
+<table>
+  <tr>
+	<th>Descripción</th>
+	<th>Expresión</th>
+  </tr>
+
+<% @rates.each do |rate| %>
+  <tr>
+	<td><%= rate.description %></td>
+	<td><%= rate.expression %></td>
+    <td><%= link_to 'Show', rate %></td>
+    <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
+    <td><%= link_to 'Destroy', rate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Crear tarifa', new_rate_path %>
