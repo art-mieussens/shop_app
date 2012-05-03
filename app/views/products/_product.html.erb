@@ -13,8 +13,6 @@
 		<% else %>
 			<%= link_to image_tag("icons/transform.png", :alt => "Mostrar transformación"), product_product_transformation_path(product) %>
 		<% end %>
-
-		<%= link_to image_tag("icons/remove.png", :alt => "Borrar"), product_path(product), :method => :delete, :confirm => "Seguro que quiere borrar este producto?" %>
 		<%= link_to image_tag("icons/movements.png", :alt => "Movimientos"), product_inventory_movements_path(product) %>
 	</td>
 </tr>

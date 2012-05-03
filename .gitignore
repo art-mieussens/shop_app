@@ -21,6 +21,9 @@
 # Ignore the data directory
 data/
 
+# Ignore backups directory
+backups/
+
 *.rbc
 *.sassc
 .sass-cache

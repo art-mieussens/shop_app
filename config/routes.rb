@@ -36,7 +36,9 @@ Homy::Application.routes.draw do
   end  
   
   resources :products do
+    get :list_inventory_pending
     resources :inventory_movements
+    resources :inventory_balances
     resource :product_transformation do
       get :new_product
       post :create_product
@@ -76,7 +78,6 @@ Homy::Application.routes.draw do
     resources :merchandise_reception_lines
     post 'process_and_close'
   end
-
             
   resources :printers do
     member do

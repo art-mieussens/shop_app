@@ -7,7 +7,7 @@ body {
 	margin: 0;
 	color: #444;
 	background-color: #ecf1e5;
-	font: 17px Georgia, "Times New Roman", Times, serif;
+	font: 15px Georgia, "Times New Roman", Times, serif;
 	padding-top: 10px;
 }
 
@@ -282,7 +282,7 @@ label {
 
 #sidebar {
 	float: left;
-	width: 240px;
+	width: 220px;
 	padding: 0px;
 	background-color: #c3d0ad;
 }

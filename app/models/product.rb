@@ -4,9 +4,9 @@ class Product < ActiveRecord::Base
   
   belongs_to :product_category
   belongs_to :supplier, :class_name => "Bussiness"
+  has_many :inventory_balances
   has_many :inventory_movements
   has_many :merchandise_reception_lines
-  has_many :inventory_balances
   has_one :product_transformation
   has_many :product_transformation_lines
   has_many :sale_lines
@@ -54,16 +54,21 @@ class Product < ActiveRecord::Base
     @uc                                                                                     #return the unit cost
   end
               
-  def quantity
-    @recent_inventory_movements = InventoryMovement.where(:product_id => self.id)
-    if @last_inventory_balance = InventoryBalance.where(:product_id => self.id).last
-      @recent_inventory_movements.where("created_at >= ?", @last_inventory_balance.inventory.created_at)
-      @q = @last_inventory_balance.quantity
-    else
-      @q = 0
+  def quantity(*time)
+    if @ibs = self.inventory_balances
+      @ibs.where("created_at <= ?", time) if time
+      if @last_inventory_balance = @ibs.last
+        @q = @last_inventory_balance.quantity
+      else
+        @q = 0
+      end      
     end
-    unless @recent_inventory_movements.blank?
-      @q += @recent_inventory_movements.collect{|im| im.quantity}.inject(:+)
+    if @recent_inventory_movements = self.inventory_movements
+      @recent_inventory_movements.where("created_at <= ?", time) if time
+      @recent_inventory_movements.where("created_at >= ?", @last_inventory_balance.created_at) if @last_inventory_balance.present?
+      if @recent_inventory_movements.present?
+        @q += @recent_inventory_movements.collect{|im| im.quantity}.inject(:+)
+      end
     end
     @q
   end

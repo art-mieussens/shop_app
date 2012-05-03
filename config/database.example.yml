@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   database: homy_devel
-  host: localhost
+  host: homy.dyndns-office.com
   username: homy_devel
   password: homy_devel
 

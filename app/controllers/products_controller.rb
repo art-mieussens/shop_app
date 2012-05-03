@@ -75,6 +75,13 @@ class ProductsController < ApplicationController
     else
       redirect_back
     end
-  end 
+  end
+  
+  def list_inventory_pending
+    #@products = nunca revisados de más de 2 meses + revisados más viejos que no estén en cero
+    
+    
+     
+  end
     
 end
