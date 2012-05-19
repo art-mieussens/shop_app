@@ -17,7 +17,7 @@ class InventoryBalancesController < ApplicationController
     if @inventory_balance.save
       redirect_to product_inventory_movements_url(@product), :notice => "Nuevo balance de inventario creado."
     else
-      render new_product_inventory_balance_path(@product)
+      render new_product_inventory_balance_url(@product)
     end
   end
   

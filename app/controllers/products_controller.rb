@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
       else
         @categories = ProductCategory.order(:name)
         @suppliers = Bussiness.where(:supplier => true).order(:name)
-        render new_product_path
+        render new_product_url
       end
   end
   
