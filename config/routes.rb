@@ -14,17 +14,17 @@ Homy::Application.routes.draw do
   resources :users do
     resources :roles
   end
-  resources :role_assignments
   resources :roles do
     resources :roles
   end
+  resources :role_assignments
   
   #contact_book
   resources :people
   resources :bussinesses 
   resources :contacts
   resources :appointments
-  
+
   resources :suppliers do
     resources :products
   end
@@ -70,9 +70,7 @@ Homy::Application.routes.draw do
   #inventory
   get 'inventories/existences'
   post 'inventories/existences_make_spreadsheet'
-  resources :inventories do
-    resources :inventory_balances
-  end
+  resources :inventory_balances
   resources :inventory_movements
   resources :merchandise_receptions do
     resources :merchandise_reception_lines

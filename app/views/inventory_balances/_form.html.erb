@@ -1,0 +1,25 @@
+<%= form_for @inventory_balance, :url => product_inventory_balances_path do |f| %>
+	
+	<% if @inventory_balance.errors.any? %>
+		<div id="error_explanation">
+	      <h2><%= pluralize(@inventory_balance.errors.count, "error") %> prohibited this inventory balance from being saved:</h2>
+	      <ul>
+		      <% @inventory_balance.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+	      </ul>
+	    </div>
+	<% end %>
+	
+	<fieldset>
+		<%= f.label 'Código' %>	<%= @product.code %> <br />
+		<%= f.label 'Descripción' %> <%= @product.description %> <br/>
+		<%= f.label 'Cantidad' %>	<%= f.text_field :quantity, :size => 10, :value =>@product.quantity(Time.mktime(2012,1,1)) %> <br />
+		<%= f.label 'Costo Unitario' %>	<%= f.text_field :unit_cost, :size => 10, :value =>@product.unit_cost(Time.mktime(2012,1,1)) %> <br />		
+	</fieldset>
+	
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	
+<% end %>

@@ -16,7 +16,7 @@
 	<br/>
 	<%= paginate @products %>
 	<table>
-		<th>Código</th> <th>Descripción</th> <th>Categoría</th> <th>Proveedor</th> <th>IVA</th> <th>Exist.</th> <th>Precio U.</th> <th>Opciones</th>
+		<th>Código</th> <th>Descripción</th> <th>Categoría</th> <th>Proveedor</th> <th>Exist.</th> <th>Precio U.</th>
 		<%= render :partial => "product", :collection => @products %>
 	</table>
 <% end %>

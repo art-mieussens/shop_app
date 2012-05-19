@@ -5,16 +5,12 @@ class InventoryMovementsController < ApplicationController
   end
   
   def index
-    if params[:product_id]
-      if @product = Product.find(params[:product_id])
-        @inventory_movements = InventoryMovement.where :product => @product
-      else
-        @inventory_movements = nil
-      end
-    else
-      @inventory_movements = InventoryMovement.all.order
+    @product = Product.find(params[:product_id])
+    @last_inventory_balance = InventoryBalance.where(:product => @product).last
+    @inventory_movements = InventoryMovement.where(:product => @product)
+    if @last_inventory_balance.present?
+      @inventory_movements = @inventory_movements.where "created_at > ?", @last_inventory_balance.created_at
     end
-    @inventory_movements.order("created_at DESC")
   end
   
 end

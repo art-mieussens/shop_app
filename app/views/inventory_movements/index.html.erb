@@ -7,15 +7,57 @@
 			Proveedor: <%= @product.supplier.name %><br />
 			Código: <%= @product.code %><br />
 			Descripción: <%= @product.description %><br />
-			Cantidad: <%=@product.quantity %><br />
+			Cantidad: <%=@product.quantity(Time.now) %><br />
+			Costo unitario: <%=@product.unit_cost(Time.now) %><br />
 		</dd>
 	</dl>
 <% end %>
 
-<table>
-	<th>Fecha</th> <th>Hora</th> <th>Cantidad</th> <th>Costo unitario</th>
-	<%= render @inventory_movements %>
-</table>
+<h3>Último balance</h3>
+<% if @last_inventory_balance.present? %>
+	<table>
+		<th>Fecha</th>
+		<th>Hora</th>
+		<th class="right-aligned">Cantidad</th>
+		<th class="right-aligned">Costo Unitario</th>
+		<th>Por</th>
+		<tr>
+			<td>
+				<%= @last_inventory_balance.created_at.strftime("%d/%m/%Y") %>
+			</td>
+			<td>
+				<%= @last_inventory_balance.created_at.strftime("%H:%M:%S") %>
+			</td>
+			<td class="right-aligned">
+				<%= @last_inventory_balance.quantity %>
+			</td>
+			<td class="right-aligned">
+				<%= @last_inventory_balance.unit_cost %>
+			</td>
+			<td>
+				<%= @last_inventory_balance.creator.first_name %>
+				<%= @last_inventory_balance.creator.last_name %>
+			</td>
+		</tr>
+	</table>
+	<br />
+<% else %>
+	No hay balances de inventario <br />
+<% end %>
+<br />
+
+Nuevo balance de inventario: <%= link_to image_tag("icons/inventory.png", :alt => "Movimientos"), new_product_inventory_balance_path(@product) %><br />
+<br />
+
+<h3>Movimientos</h3>
+<% if @inventory_movements.present?%>
+	<table>
+		<th>Fecha</th> <th>Hora</th> <th>Cantidad</th> <th>Costo unitario</th>
+		<%= render @inventory_movements %>
+	</table>
+<% else %>
+	No hay movimientos de inventario desde el último balance <br />
+<% end %>
 
 <% if @product %>
 	<br />

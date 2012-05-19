@@ -2,7 +2,7 @@
 
 <%= form_tag inventories_existences_make_spreadsheet_url, :method => :post do %>
 
-	<%= label_tag 'Fecha - Hora:' %> <%= select_datetime(Time.now, :order => [:day,:month, :year]) %> <br />
+	<%= label_tag 'Fecha:' %> <%= select_date(Time.now, :order => [:day,:month, :year]) %> <br />
 	<%= submit_tag "Generar documento", :name => nil %> <br />
 
 <% end %>

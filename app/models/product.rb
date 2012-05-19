@@ -28,12 +28,12 @@ class Product < ActiveRecord::Base
   
   def unit_cost(*time)
     @inventory_balances = InventoryBalance.where(:product_id => self.id)                  #get all balances for this product
-    @inventory_balances.where("created_at <= ?", time) if time                            #if a time is given, select only those before
+    @inventory_balances = @inventory_balances.where("created_at <= ?", time) if time                            #if a time is given, select only those before
     if @last_inventory_balance = inventory_balances.last                                   #if the last inventory balance exists
       @uc = @last_inventory_balance.unit_cost                                                 #take cost from las balance 
       @q = @last_inventory_balance.quantity                                                   #take quantity from last balance
       @recent_inventory_movements = InventoryMovement.where(:product_id => self.id).where(
-        "created_at >= ?", @last_inventory_balance.inventory.created_at)                      #get movements since last balance
+        "created_at >= ?", @last_inventory_balance.created_at)                      #get movements since last balance
     else                                                                                    #if not
       @uc = 0                                                                                 #initialize cost
       @q = 0                                                                                  #initialize quantity
@@ -64,8 +64,8 @@ class Product < ActiveRecord::Base
       end      
     end
     if @recent_inventory_movements = self.inventory_movements
-      @recent_inventory_movements.where("created_at <= ?", time) if time
-      @recent_inventory_movements.where("created_at >= ?", @last_inventory_balance.created_at) if @last_inventory_balance.present?
+      @recent_inventory_movements = @recent_inventory_movements.where("created_at >= ?", @last_inventory_balance.created_at) if @last_inventory_balance.present?
+      @recent_inventory_movements = @recent_inventory_movements.where("created_at <= ?", time) if time
       if @recent_inventory_movements.present?
         @q += @recent_inventory_movements.collect{|im| im.quantity}.inject(:+)
       end
